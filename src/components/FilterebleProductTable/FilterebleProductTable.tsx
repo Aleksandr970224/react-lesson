@@ -1,18 +1,13 @@
 import { ChangeEvent, useState } from 'react'
 import { SearchBar } from '../SearchBar/SearchBar'
 import { ProductTable } from '../ProductTable/ProductTable'
-import './FilterebleProductTable.modules.css'
+import styles from './FilterebleProductTable.module.css'
 
+import { Products } from '../../types'
 
-interface PRODUCTS {
-  category: string,
-  price: string,
-  stocked: boolean,
-  name: string
-}
 
 interface FilterProps {
-  products: PRODUCTS[],
+  products: Products[],
 }
 
 // компонент "обертка" для инпута и таблицы
@@ -27,18 +22,16 @@ export function FilterebleProductTable({
   const handleTextInput = (e: ChangeEvent<HTMLInputElement>) => setTextInput(prevState => prevState = e.target.value);
 
   // создаем хук для отслеживания состояния чекбокса
-  const [checkbox, Setcheckbox] = useState<boolean>(false);
+  const [checkbox, setCheckbox] = useState<boolean>(false);
 
-  const changeCheckbox = () => Setcheckbox(!checkbox);
 
   return (
-    <div className='wrapper'>
+    <div className={styles.wrapper}>
       <SearchBar
-        change={changeCheckbox}
+        change={() => setCheckbox(!checkbox)}
         textChange={handleTextInput}
         textInput={textInput}
-        checkbox={checkbox}
-        products={products} />
+        checkbox={checkbox} />
       <ProductTable
         textInput={textInput}
         checkbox={checkbox}

@@ -1,16 +1,12 @@
 import { ProductCategoryRow } from "../ProductCategoryRow/ProductCategoryRow"
 import { ProductRow } from "../ProductRow/ProductRow"
 
+import { Products } from '../../types'
 
-interface PRODUCTS {
-  category: string,
-  price: string,
-  stocked: boolean,
-  name: string,
-}
+import { productsCategory } from "../../constants"
 
 interface ProductProps {
-  products: PRODUCTS[],
+  products: Products[],
   checkbox: boolean,
   textInput: string
 }
@@ -21,19 +17,15 @@ export function ProductTable({
   textInput
 }: ProductProps) {
 
-  // переменные для подстановки значения в компонент категорий
-  let nameFruit = 'Фрукты';
-  let nameVeget = 'Овощи';
-
   return (
 
     // отрисовываем компонент категорий. Далее работа с основным массивом: фильтруем на основании категории, перебираем и отрисовываем компоненты строк таблицы для товаров
     <table>
       <tbody>
-        <ProductCategoryRow category={nameVeget} />
+        <ProductCategoryRow category={productsCategory.vegetables} />
 
         {products
-          .filter(item => item.category === nameVeget)
+          .filter(item => item.category === productsCategory.vegetables)
           .map(item => (
             <ProductRow
               textInput={textInput}
@@ -43,10 +35,10 @@ export function ProductTable({
             />
           ))}
 
-        <ProductCategoryRow category={nameFruit} />
+        <ProductCategoryRow category={productsCategory.fruits} />
 
         {products
-          .filter(item => item.category === nameFruit)
+          .filter(item => item.category === productsCategory.fruits)
           .map(item => (
             <ProductRow
               textInput={textInput}

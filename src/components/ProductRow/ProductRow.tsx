@@ -1,11 +1,6 @@
-import './Product.modules.css'
+import styles from './Product.module.css'
 
-interface ProductsItem {
-  category: string,
-  price: string,
-  stocked: boolean,
-  name: string
-}
+import { ProductsItem } from '../../types'
 
 interface RowProps {
   productsItem: ProductsItem,
@@ -22,7 +17,7 @@ export function ProductRow({
 
 
   // переменная для вывода названия товара и подцветки "не в наличии"
-  let name = productsItem.stocked ? productsItem.name :
+  const name = productsItem.stocked ? productsItem.name :
     <span style={{ color: 'red' }}>
       {productsItem.name}
     </span>;
@@ -37,7 +32,7 @@ export function ProductRow({
   let priceSort = productsItem.price.toLowerCase().indexOf(textInput);
 
   // переменная для присваивания класса элементам, скрыть\показать строки таблицы, основанная на вводе в инпут
-  let nameSortStyle = (nameSort) ? 'hidden' : 'active';
+  const nameSortStyle = (nameSort) ? `${styles.hidden}` : `${styles.active}`;
 
 
   return (

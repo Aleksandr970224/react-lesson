@@ -1,11 +1,11 @@
-form {
+.form_main {
   display: flex;
   flex-direction: column;
   max-width: 300px;
   gap: 10px;
 }
 
-label {
+.label_form_main {
   display: flex;
   align-items: center;
   gap: 5px;

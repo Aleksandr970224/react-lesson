@@ -1,14 +1,7 @@
-import './SearchBar.modules.css'
+import styles from './SearchBar.module.css'
 
-interface PRODUCTS {
-  category: string,
-  price: string,
-  stocked: boolean,
-  name: string
-}
 
 interface SearchProps {
-  products?: PRODUCTS[],
   textInput: string,
   textChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
   checkbox: boolean,
@@ -24,12 +17,12 @@ export function SearchBar
 
 
   return (
-    <form>
+    <form className={styles.form_main}>
       <input placeholder='Search...'
         onChange={textChange}
         type="text" />
 
-      <label>Показывать только товар в наличии
+      <label className={styles.label_form_main}>Показывать только товар в наличии
         <input
           onChange={change}
           checked={checkbox}
